@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Home Cleaning Services - Bluffton & Hilton Head, SC</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .star-icon {
+            font-size: 2rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f0f0f0" width="1200" height="600"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 150px 2rem 100px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s 0.2s backwards;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeInUp 1s 0.4s backwards;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #667eea;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-top: 4px solid #667eea;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .booking-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 4rem 2rem;
+        }
+
+        .booking-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #667eea;
+            font-size: 1.1rem;
+        }
+
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group select:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .radio-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .radio-option {
+            position: relative;
+        }
+
+        .radio-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .radio-option label {
+            display: block;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .radio-option input[type="radio"]:checked + label {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        .radio-option label:hover {
+            border-color: #667eea;
+        }
+
+        .number-input-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .price-display {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .price-display h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .price-amount {
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        .price-note {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 1rem;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .about-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text ul {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .about-text li {
+            padding: 0.5rem 0;
+            padding-left: 2rem;
+            position: relative;
+        }
+
+        .about-text li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .testimonials {
+            background: #f8f9fa;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .quote-icon {
+            font-size: 3rem;
+            color: #667eea;
+            opacity: 0.3;
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #667eea;
+            text-align: right;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .contact-section h2 {
+            color: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .contact-info {
+            font-size: 1.2rem;
+        }
+
+        .contact-info p {
+            margin: 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+        }
+
+        footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 3rem;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            position: relative;
+            animation: slideIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 20px;
+        }
+
+        .close:hover {
+            color: #000;
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .number-input-group {
+                grid-template-columns: 1fr;
+            }
+
+            .booking-container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <span class="star-icon">⭐</span>
+                <span>Star Home Cleaning</span>
+            </div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#booking">Book Now</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <h1>Your Home Deserves the Best</h1>
+        <p>Professional Cleaning Services in Bluffton & Hilton Head, SC</p>
+        <p>Serving the Lowcountry for Over 20 Years</p>
+        <a href="#booking" class="cta-button">Book Your Cleaning Now</a>
+    </section>
+
+    <section id="services">
+        <h2>Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🏠</div>
+                <h3>Regular Home Cleaning</h3>
+                <p>Maintain a spotless home with our recurring cleaning services. We handle everything from dusting to vacuuming, ensuring your space stays pristine.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">✨</div>
+                <h3>Deep Cleaning</h3>
+                <p>Comprehensive cleaning for every corner of your home. Perfect for seasonal refreshes or preparing for special occasions.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📦</div>
+                <h3>Move In/Out Cleaning</h3>
+                <p>Starting fresh or leaving a good impression? Our thorough move cleaning services ensure properties are spotless.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🏢</div>
+                <h3>Office Cleaning</h3>
+                <p>Professional workspace cleaning to maintain a healthy and productive environment for your employees and clients.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🌿</div>
+                <h3>Eco-Friendly Options</h3>
+                <p>We use eco-friendly products upon request to ensure a safe and healthy environment for you and your loved ones.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🔧</div>
+                <h3>Post-Construction</h3>
+                <p>Remove dust and debris after renovations with our specialized post-construction cleaning services.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="booking-section" id="booking">
+        <h2>Book Your Cleaning Service</h2>
+        <div class="booking-container">
+            <div class="form-group">
+                <label for="cleaningType">Type of Cleaning</label>
+                <select id="cleaningType" onchange="calculatePrice()">
+                    <option value="">Select cleaning type...</option>
+                    <option value="standard">Standard Cleaning</option>
+                    <option value="deep">Deep Cleaning</option>
+                    <option value="move">Move In/Out Cleaning</option>
+                    <option value="office">Office Cleaning</option>
+                    <option value="construction">Post-Construction</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Frequency</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="oneTime" name="frequency" value="oneTime" onchange="calculatePrice()" checked>
+                        <label for="oneTime">One-Time</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="weekly" name="frequency" value="weekly" onchange="calculatePrice()">
+                        <label for="weekly">Weekly</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="biweekly" name="frequency" value="biweekly" onchange="calculatePrice()">
+                        <label for="biweekly">Bi-Weekly</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="monthly" name="frequency" value="monthly" onchange="calculatePrice()">
+                        <label for="monthly">Monthly</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="number-input-group">
+                <div class="form-group">
+                    <label for="bedrooms">Number of Bedrooms</label>
+                    <input type="number" id="bedrooms" min="1" max="10" value="2" onchange="calculatePrice()">
+                </div>
+
+                <div class="form-group">
+                    <label for="bathrooms">Number of Bathrooms</label>
+                    <input type="number" id="bathrooms" min="1" max="10" value="2" onchange="calculatePrice()">
+                </div>
+            </div>
+
+            <div class="price-display" id="priceDisplay">
+                <h3>Estimated Price</h3>
+                <div class="price-amount" id="priceAmount">$0</div>
+                <div class="price-note">Final price may vary based on home condition and specific requirements</div>
+            </div>
+
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" placeholder="Enter your phone number" required>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Service Address</label>
+                <input type="text" id="address" placeholder="Enter your address" required>
+            </div>
+
+            <div class="form-group">
+                <label for="date">Preferred Date</label>
+                <input type="date" id="date" required>
+            </div>
+
+            <button class="submit-button" onclick="submitBooking()">Request Quote & Book Service</button>
+        </div>
+    </section>
+
+    <section class="about-section" id="about">
+        <h2>Why Choose Star Home Cleaning?</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>At Star Home Cleaning Services, we prioritize more than just cleanliness. We deliver unparalleled value through our attention to detail, personalized approach, and commitment to customer satisfaction.</p>
+                <ul>
+                    <li>Over 20 years serving Bluffton & Hilton Head</li>
+                    <li>Trained team of experienced professionals</li>
+                    <li>Eco-friendly cleaning products available</li>
+                    <li>Personalized cleaning plans</li>
+                    <li>Flexible scheduling to fit your needs</li>
+                    <li>100% satisfaction guarantee</li>
+                </ul>
+            </div>
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number">20+</div>
+                    <p>Years of Experience</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1000+</div>
+                    <p>Happy Clients</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100%</div>
+                    <p>Satisfaction Rate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <h2>What Our Customers Say</h2>
+        <div class="testimonial-grid">
+            <div class="testimonial-card">
+                <div class="quote-icon">"</div>
+                <p class="testimonial-text">Hiring Star Home Cleaning was the best thing I ever did. We used to have problems with quality and reliability when it came to cleaning. Not anymore. Star has made that one less thing I have to worry about. I wouldn't use any other cleaning service.</p>
+                <p class="testimonial-author">- Satisfied Customer</p>
+            </div>
+            <div class="testimonial-card">
+                <div class="quote-icon">"</div>
+                <p class="testimonial-text">The team is incredibly professional and thorough. They pay attention to every detail and leave my home sparkling clean every time. Their eco-friendly options give me peace of mind about my family's health.</p>
+                <p class="testimonial-author">- Local Resident</p>
+            </div>
+            <div class="testimonial-card">
+                <div class="quote-icon">"</div>
+                <p class="testimonial-text">I've been using Star Home Cleaning for years, and they never disappoint. Their consistency and quality are unmatched. The staff is friendly, trustworthy, and always on time.</p>
+                <p class="testimonial-author">- Long-time Client</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <h2>Get In Touch</h2>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3>Contact Information</h3>
+                <p><span class="contact-icon">📞</span> (843) 227-1952</p>
+                <p><span class="contact-icon">📍</span> Serving Bluffton & Hilton Head, SC</p>
+                <p><span class="contact-icon">⏰</span> Monday - Saturday: 8:00 AM - 6:00 PM</p>
+            </div>
+            <div class="contact-info">
+                <h3>Ready to Experience the Difference?</h3>
+                <p>Contact us today for a free, no-obligation quote. Our team is ready to create a customized cleaning plan that fits your needs and budget.</p>
+                <p style="margin-top: 2rem;">We look forward to serving you and exceeding your expectations!</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Star Home Cleaning Services. All rights reserved.</p>
+        <p>Proudly serving Bluffton, Hilton Head, and the surrounding Lowcountry area.</p>
+    </footer>
+
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="success-icon">✅</div>
+            <h2 style="text-align: center; color: #667eea;">Booking Request Sent!</h2>
+            <p style="text-align: center; margin-top: 1rem;">Thank you for choosing Star Home Cleaning! Your booking request has been sent via WhatsApp. We will confirm your appointment and provide final details shortly.</p>
+            <p style="text-align: center; margin-top: 1rem; font-weight: bold;">Check WhatsApp for our response.</p>
+        </div>
+    </div>
+
+    <script>
+        const pricing = {
+            cleaningTypes: {
+                standard: 800,
+                deep: 1500,
+                move: 2000,
+                office: 1000,
+                construction: 2500
+            },
+            frequency: {
+                oneTime: 1,
+                weekly: 0.85,
+                biweekly: 0.90,
+                monthly: 0.95
+            },
+            perBedroom: 200,
+            perBathroom: 150
+        };
+
+        function calculatePrice() {
+            const cleaningType = document.getElementById('cleaningType').value;
+            const frequency = document.querySelector('input[name="frequency"]:checked').value;
+            const bedrooms = parseInt(document.getElementById('bedrooms').value) || 0;
+            const bathrooms = parseInt(document.getElementById('bathrooms').value) || 0;
+
+            if (!cleaningType) {
+                document.getElementById('priceAmount').textContent = 'R0';
+                return;
+            }
+
+            let basePrice = pricing.cleaningTypes[cleaningType];
+            let roomsPrice = (bedrooms * pricing.perBedroom) + (bathrooms * pricing.perBathroom);
+            let subtotal = basePrice + roomsPrice;
+            let frequencyMultiplier = pricing.frequency[frequency];
+            let total = Math.round(subtotal * frequencyMultiplier);
+
+            document.getElementById('priceAmount').textContent = 'R' + total;
+        }
+
+        function submitBooking() {
+            const cleaningType = document.getElementById('cleaningType').value;
+            const cleaningTypeName = document.getElementById('cleaningType').options[document.getElementById('cleaningType').selectedIndex].text;
+            const frequency = document.querySelector('input[name="frequency"]:checked').value;
+            const frequencyName = document.querySelector('input[name="frequency"]:checked').nextElementSibling.textContent;
+            const bedrooms = document.getElementById('bedrooms').value;
+            const bathrooms = document.getElementById('bathrooms').value;
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const date = document.getElementById('date').value;
+            const estimatedPrice = document.getElementById('priceAmount').textContent;
+
+            if (!cleaningType || !name || !email || !phone || !address || !date) {
+                alert('Please fill in all required fields');
+                return;
+            }
+
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            // Create WhatsApp message
+            const message = `*New Booking Request - Star Home Cleaning*%0A%0A` +
+                `*Customer Details:*%0A` +
+                `Name: ${encodeURIComponent(name)}%0A` +
+                `Phone: ${encodeURIComponent(phone)}%0A` +
+                `Email: ${encodeURIComponent(email)}%0A` +
+                `Address: ${encodeURIComponent(address)}%0A%0A` +
+                `*Service Details:*%0A` +
+                `Cleaning Type: ${encodeURIComponent(cleaningTypeName)}%0A` +
+                `Frequency: ${encodeURIComponent(frequencyName)}%0A` +
+                `Bedrooms: ${bedrooms}%0A` +
+                `Bathrooms: ${bathrooms}%0A` +
+                `Preferred Date: ${date}%0A%0A` +
+                `*Estimated Price: ${estimatedPrice}*%0A%0A` +
+                `Please confirm availability for this booking.`;
+
+            // WhatsApp number (replace with actual number)
+            const whatsappNumber = '27832271952'; // Format: country code + number (no + or spaces)
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${message}`;
+
+            // Open WhatsApp
+            window.open(whatsappURL, '_blank');
+
+            // Show success modal
+            document.getElementById('successModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('successModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('successModal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-card, .stat-card, .testimonial-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s, transform 0.6s';
+            observer.observe(el);
+        });
+
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('date').setAttribute('min', today);
+
+        calculatePrice();
+    </script>
+</body>
+</html

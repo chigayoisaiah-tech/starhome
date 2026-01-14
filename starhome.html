@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    body { 
+        font-family: Arial, sans-serif; 
+        padding: 20px; 
+        background: #f5f7fa; 
+        color: #333;
+    }
+
+    h2, h3 { color: #1e3c72; }
+
+    .input-row { margin-bottom: 15px; }
+
+    input, select {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #bbb;
+        margin-top: 5px;
+    }
+
+    .extras-list label { display: block; padding: 6px 0; }
+
+    .total-box {
+        margin-top: 20px;
+        padding: 15px;
+        font-size: 1.4rem;
+        background: #1e3c72;
+        color: white;
+        border-radius: 10px;
+        text-align: center;
+    }
+
+    button {
+        width: 100%;
+        background: #ffd700;
+        padding: 15px;
+        border: none;
+        border-radius: 30px;
+        margin-top: 20px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #1e3c72;
+        cursor: pointer;
+    }
+</style>
+</head>
+
+<body>
+
+<h2>Book Your Cleaning Service</h2>
+
+<!-- CUSTOMER DETAILS -->
+<h3>Customer Details</h3>
+
+<div class="input-row">
+    <label>Full Name</label>
+    <input type="text" id="customerName">
+</div>
+
+<div class="input-row">
+    <label>Phone Number</label>
+    <input type="text" id="customerPhone">
+</div>
+
+<div class="input-row">
+    <label>Email Address</label>
+    <input type="email" id="customerEmail">
+</div>
+
+<!-- SCHEDULING -->
+<h3>Schedule</h3>
+
+<div class="input-row">
+    <label>Preferred Date</label>
+    <input type="date" id="cleanDate">
+</div>
+
+<div class="input-row">
+    <label>Preferred Time</label>
+    <input type="time" id="cleanTime">
+</div>
+
+<!-- CLEANING TYPE -->
+<h3>Cleaning Details</h3>
+
+<div class="input-row">
+    <label>Cleaning Type</label>
+    <select id="cleanType" onchange="calculateTotal()">
+        <option value="0">Select cleaning type</option>
+        <option value="200">Regular Cleaning – R200</option>
+        <option value="400">Deep Cleaning – R400</option>
+        <option value="600">Move In/Out – R600</option>
+        <option value="500">Office – R500</option>
+        <option value="350">Vacation Rental – R350</option>
+        <option value="800">Post Construction – R800</option>
+    </select>
+</div>
+
+<!-- ROOMS -->
+<div class="input-row">
+    <label>Rooms (R300 each)</label>
+    <input type="number" id="rooms" value="0" min="0" onchange="calculateTotal()">
+</div>
+
+<!-- BEDROOMS -->
+<div class="input-row">
+    <label>Bedrooms (R500 each)</label>
+    <input type="number" id="bedrooms" value="0" min="0" onchange="calculateTotal()">
+</div>
+
+<!-- EXTRAS -->
+<div class="input-row">
+    <label>Extras (R150 each)</label>
+    <div class="extras-list">
+        <label><input type="checkbox" value="150" onchange="calculateTotal()"> Fridge</label>
+        <label><input type="checkbox" value="150" onchange="calculateTotal()"> Oven</label>
+        <label><input type="checkbox" value="150" onchange="calculateTotal()"> Windows</label>
+        <label><input type="checkbox" value="150" onchange="calculateTotal()"> Laundry</label>
+        <label><input type="checkbox" value="150" onchange="calculateTotal()"> Cupboard Organizing</label>
+    </div>
+</div>
+
+<!-- ADDRESS -->
+<div class="input-row">
+    <label>Service Address</label>
+    <select id="addressSelect" onchange="toggleAddressField()">
+        <option value="default">Use default – 27 Sandton Drive</option>
+        <option value="other">Enter another address</option>
+    </select>
+
+    <input type="text" id="otherAddress" placeholder="Enter address" style="display:none; margin-top:10px;">
+</div>
+
+<!-- TOTAL -->
+<div class="total-box">
+    Total: <span id="totalPrice">R0.00</span>
+</div>
+
+<button onclick="sendWhatsApp()">Send Booking to WhatsApp</button>
+
+<script>
+
+function calculateTotal() {
+    let cleanType = parseFloat(document.getElementById("cleanType").value);
+    let rooms = parseInt(document.getElementById("rooms").value) * 300;
+    let bedrooms = parseInt(document.getElementById("bedrooms").value) * 500;
+
+    let extras = 0;
+    document.querySelectorAll('.extras-list input[type="checkbox"]').forEach(cb => {
+        if (cb.checked) extras += parseFloat(cb.value);
+    });
+
+    let total = (cleanType || 0) + rooms + bedrooms + extras;
+    document.getElementById("totalPrice").textContent = "R" + total.toFixed(2);
+}
+
+function toggleAddressField() {
+    let other = document.getElementById("otherAddress");
+    other.style.display = document.getElementById("addressSelect").value === "other" ? "block" : "none";
+}
+
+function sendWhatsApp() {
+    let name = document.getElementById("customerName").value.trim();
+    let phone = document.getElementById("customerPhone").value.trim();
+    let email = document.getElementById("customerEmail").value.trim();
+    let date = document.getElementById("cleanDate").value;
+    let time = document.getElementById("cleanTime").value;
+
+    if (!name || !phone || !email || !date || !time) {
+        alert("Please fill in all customer and scheduling details.");
+        return;
+    }
+
+    let address = (document.getElementById("addressSelect").value === "default")
+        ? "27 Sandton Drive"
+        : document.getElementById("otherAddress").value;
+
+    let total = document.getElementById("totalPrice").textContent;
+
+    let message =
+        "*New Cleaning Booking*\n\n" +
+        "*Customer:* " + name + "\n" +
+        "*Phone:* " + phone + "\n" +
+        "*Email:* " + email + "\n\n" +
+        "*Date:* " + date + "\n" +
+        "*Time:* " + time + "\n" +
+        "*Address:* " + address + "\n\n" +
+        "*Total Price:* " + total + "\n\n" +
+        "Please confirm my booking. Thank you!";
+
+    let phoneNumber = "27652992030"; // South Africa country code + 0652992030
+    let url = "https://wa.me/" + phoneNumber + "?text=" + encodeURIComponent(message);
+
+    window.open(url, "_blank");
+}
+
+</script>
+
+</body>
+</html>
